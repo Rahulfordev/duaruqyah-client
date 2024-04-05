@@ -1,11 +1,19 @@
+"use client";
 import Image from "next/image";
+import Link from "next/link";
 import search from "../../../public/search.svg";
 import IntroductionDua from "../../../public/IntroductionDua.svg";
+import useFetcher from "@/useFetcher";
+import "./categories.css";
 
 const Categories = () => {
+  const { data, loading, error } = useFetcher(
+    "http://localhost:5000/api/categories"
+  );
+
   return (
     <div>
-      <div className="w-[429px] bg-white rounded-lg h-[822px]">
+      <div className="custom-scrollbar w-[429px] bg-white rounded-lg h-[822px]">
         <div>
           <div className="rounded-tl-lg rounded-tr-lg bg-green-600 py-[18px] px-[124px] text-center text-white text-lg mb-4">
             <p>Categories</p>
@@ -22,21 +30,33 @@ const Categories = () => {
               />
             </div>
           </div>
-          <div className="mx-4">
-            <div className="flex items-center gap-4 p-[10px] bg-icon-bg rounded-lg">
-              <div>
-                <Image src={IntroductionDua} alt="IntroductionDua" />
-              </div>
-              <div>
-                <p className="text-green-600 font-semibold">
-                  Introduction to Dua
-                </p>
-                <p>Subcategory: 11</p>
-              </div>
-              <div>
-                <p>15</p>
-                <p>Duas</p>
-              </div>
+          <div className="mx-4 overflow-x-auto h-[660px]">
+            <div className="flex flex-col gap-4 items-center">
+              {data &&
+                data.map((res, i) => {
+                  return (
+                    <div
+                      key={i}
+                      className="flex items-center gap-4 p-[10px] bg-icon-bg rounded-lg   w-full"
+                    >
+                      <div>
+                        <Image src={IntroductionDua} alt="IntroductionDua" />
+                      </div>
+                      <div>
+                        <Link href={`${res.cat_id}`}>
+                          <p className="text-green-600 font-semibold text-base">
+                            {res?.cat_name_en}
+                          </p>
+                        </Link>
+                        <p>Subcategory: 11</p>
+                      </div>
+                      <div>
+                        <p>15</p>
+                        <p>Duas</p>
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>
