@@ -1,18 +1,15 @@
-"use client";
 import Image from "next/image";
-import allahTraced from "../../../public/allahTraced.svg";
-import copy from "../../../public/copy.svg";
-import bookmark from "../../../public/bookmark.svg";
-import light from "../../../public/light.svg";
-import share from "../../../public/share.svg";
-import report from "../../../public/report.svg";
-import audio from "../../../public/audio.svg";
-import useFetcher from "@/useFetcher";
 
-const DuaContent = () => {
-  const { data, loading, error } = useFetcher(
-    "http://localhost:5000/api/categories"
-  );
+import allahTraced from "../../public/allahTraced.svg";
+import copy from "../../public/copy.svg";
+import bookmark from "../../public/bookmark.svg";
+import light from "../../public/light.svg";
+import share from "../../public/share.svg";
+import report from "../../public/report.svg";
+import audio from "../../public/audio.svg";
+
+export default function DuaContent({ data }) {
+  
   return (
     <div className="w-[829px] h-[1123px]">
       <div className="flex flex-col gap-3">
@@ -58,6 +55,4 @@ const DuaContent = () => {
       </div>
     </div>
   );
-};
-
-export default DuaContent;
+}

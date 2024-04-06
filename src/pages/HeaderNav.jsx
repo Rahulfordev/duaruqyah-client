@@ -20,7 +20,7 @@ const HeaderNav = () => {
                   />
                   <button
                     type="submit"
-                    class="absolute flex items-center justify-center bg-gray-100 cursor-pointer md-minhover:bg-gray-20 px-4 py-[9px] rounded-md md-min:absolute right-1 top-1 bottom-1 sm-max:focus:bg-green-700"
+                    className="absolute flex items-center justify-center bg-gray-100 cursor-pointer md-minhover:bg-gray-20 px-4 py-[9px] rounded-md md-min:absolute right-1 top-1 bottom-1 sm-max:focus:bg-green-700"
                   >
                     <Image src={search} alt="search" className="" />
                   </button>
@@ -32,7 +32,7 @@ const HeaderNav = () => {
         <div className="flex flex-row items-center justify-end">
           <Image src={profile} alt="profile" />
           <svg
-            class="ml-2 mr-2"
+            className="ml-2 mr-2"
             width="10"
             height="7"
             viewBox="0 0 10 7"

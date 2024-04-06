@@ -1,15 +1,29 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import search from "../../../public/search.svg";
 import IntroductionDua from "../../../public/IntroductionDua.svg";
 import useFetcher from "@/useFetcher";
 import "./categories.css";
+import { useState } from "react";
 
 const Categories = () => {
-  const { data, loading, error } = useFetcher(
-    "http://localhost:5000/api/categories"
+  const [showSubCat, setShowSubCat] = useState(null);
+  const {
+    data: category,
+    loading,
+    error,
+  } = useFetcher("http://localhost:5000/api/categories");
+
+  const { data: subcategory } = useFetcher(
+    `http://localhost:5000/api/subcategories`
   );
+
+  const combinedData = category?.map((item1) => {
+    const matchingItems = subcategory?.filter(
+      (item2) => item2.cat_id === item1.cat_id
+    );
+    return { ...item1, matchingItems };
+  });
 
   return (
     <div>
@@ -32,27 +46,48 @@ const Categories = () => {
           </div>
           <div className="mx-4 overflow-x-auto h-[660px]">
             <div className="flex flex-col gap-4 items-center">
-              {data &&
-                data.map((res, i) => {
+              {combinedData &&
+                combinedData.map((item, i) => {
                   return (
-                    <div
-                      key={i}
-                      className="flex items-center gap-4 p-[10px] bg-icon-bg rounded-lg   w-full"
-                    >
-                      <div>
-                        <Image src={IntroductionDua} alt="IntroductionDua" />
-                      </div>
-                      <div>
-                        <Link href={`${res.cat_id}`}>
+                    <div key={i}>
+                      <div
+                        onClick={() =>
+                          setShowSubCat(showSubCat === i ? null : i)
+                        }
+                        className="flex items-center gap-4 p-[10px] bg-icon-bg rounded-lg w-[380px]"
+                      >
+                        <div>
+                          <Image src={IntroductionDua} alt="IntroductionDua" />
+                        </div>
+                        <div>
                           <p className="text-green-600 font-semibold text-base">
-                            {res?.cat_name_en}
+                            {item?.cat_name_en}
                           </p>
-                        </Link>
-                        <p>Subcategory: 11</p>
+                          <p>Subcategory: {item?.no_of_subcat}</p>
+                        </div>
+                        <div>
+                          <p>{item?.no_of_dua}</p>
+                          <p>Duas</p>
+                        </div>
                       </div>
-                      <div>
-                        <p>15</p>
-                        <p>Duas</p>
+                      <div
+                        className={`sub-categories mt-4 ${
+                          showSubCat === i ? "open" : "closed"
+                        }`}
+                      >
+                        {showSubCat === i && (
+                          <div className="w-[380px] sub-categorie">
+                            {item?.matchingItems &&
+                              item.matchingItems.map((subItem, j) => (
+                                <div
+                                  key={j}
+                                  className="py-2 pl-3 sub-categories__content"
+                                >
+                                  <p>{subItem?.subcat_name_en}</p>
+                                </div>
+                              ))}
+                          </div>
+                        )}
                       </div>
                     </div>
                   );
