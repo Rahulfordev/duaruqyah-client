@@ -1,13 +1,13 @@
 import Image from "next/image";
-import duaLogo from "../../public/dua-logo.svg";
-import homeIcon from "../../public/home.svg";
-import alldua from "../../public/alldua.svg";
-import memorize from "../../public/memorize.svg";
-import bookmark from "../../public/bookmark.svg";
-import ruqyah from "../../public/ruqyah.svg";
-import duaInfo from "../../public/dua-info.svg";
-import books from "../../public/books.svg";
-import support from "../../public/support.svg";
+import duaLogo from "../../../public/dua-logo.svg";
+import homeIcon from "../../../public/home.svg";
+import alldua from "../../../public/alldua.svg";
+import memorize from "../../../public/memorize.svg";
+import bookmark from "../../../public/bookmark.svg";
+import ruqyah from "../../../public/ruqyah.svg";
+import duaInfo from "../../../public/dua-info.svg";
+import books from "../../../public/books.svg";
+import support from "../../../public/support.svg";
 import Link from "next/link";
 
 const LeftBar = () => {

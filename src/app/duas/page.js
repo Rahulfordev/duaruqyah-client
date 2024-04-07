@@ -1,13 +1,9 @@
 "use client";
 
-import DuaContent from "@/components/DuaContent";
-import useFetcher from "@/useFetcher";
+import DuaContent from "@/components/DuaContent/DuaContent";
 
 const Page = () => {
-  const { data, loading, error } = useFetcher(
-    "http://localhost:5000/api/categories"
-  );
-  return <DuaContent data={data} />;
+  return <DuaContent />;
 };
 
 export default Page;

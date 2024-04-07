@@ -2,11 +2,11 @@
 import Image from "next/image";
 import search from "../../../public/search.svg";
 import IntroductionDua from "../../../public/IntroductionDua.svg";
-import useFetcher from "@/useFetcher";
+import useFetcher from "@/hooks/useFetcher";
 import "./categories.css";
 import { useState } from "react";
 
-const Categories = () => {
+const Categories = ({ setFindId, showCategory }) => {
   const [showSubCat, setShowSubCat] = useState(null);
   const {
     data: category,
@@ -26,8 +26,12 @@ const Categories = () => {
   });
 
   return (
-    <div>
-      <div className="custom-scrollbar w-[429px] bg-white rounded-lg h-[822px]">
+    <div
+      className={`category ${
+        showCategory ? "show" : "hide"
+      } absolute xl:static`}
+    >
+      <div className="custom-scrollbar w-[329px] md:w-[429px] bg-white rounded-lg h-[822px]">
         <div>
           <div className="rounded-tl-lg rounded-tr-lg bg-green-600 py-[18px] px-[124px] text-center text-white text-lg mb-4">
             <p>Categories</p>
@@ -49,12 +53,13 @@ const Categories = () => {
               {combinedData &&
                 combinedData.map((item, i) => {
                   return (
-                    <div key={i}>
+                    <div key={item.cat_id}>
                       <div
-                        onClick={() =>
-                          setShowSubCat(showSubCat === i ? null : i)
-                        }
-                        className="flex items-center gap-4 p-[10px] bg-icon-bg rounded-lg w-[380px]"
+                        onClick={() => {
+                          setFindId(item.cat_id);
+                          setShowSubCat(showSubCat === i ? null : i);
+                        }}
+                        className="flex items-center gap-4 p-[10px] bg-icon-bg rounded-lg w-[280px] md:w-[380px]"
                       >
                         <div>
                           <Image src={IntroductionDua} alt="IntroductionDua" />
@@ -79,12 +84,14 @@ const Categories = () => {
                           <div className="w-[380px] sub-categorie">
                             {item?.matchingItems &&
                               item.matchingItems.map((subItem, j) => (
-                                <div
-                                  key={j}
-                                  className="py-2 pl-3 sub-categories__content"
+                                <label
+                                  key={subItem.subcat_id}
+                                  htmlFor={subItem.subcat_id}
                                 >
-                                  <p>{subItem?.subcat_name_en}</p>
-                                </div>
+                                  <div className="py-2 pl-3 sub-categories__content">
+                                    <p>{subItem?.subcat_name_en}</p>
+                                  </div>
+                                </label>
                               ))}
                           </div>
                         )}
