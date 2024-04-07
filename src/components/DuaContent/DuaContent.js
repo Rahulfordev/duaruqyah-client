@@ -22,7 +22,7 @@ export default function DuaContent({ findId }) {
       try {
         setLoading(true);
         const response = await axios.get(
-          `http://localhost:5000/api/duas/cat_id/${findId || 1}`
+          `https://nodejs-sqlite.onrender.com/api/duas/cat_id/${findId || 1}`
         );
         setData(response.data);
       } catch (error) {
@@ -49,7 +49,7 @@ export default function DuaContent({ findId }) {
   };
 
   return (
-    <div className="dua-custom-scrollbar mb-12 md:mb-8 max-w-[829px] mx-2 md:mx-0 overflow-x-auto h-[955px] md:h-[1123px] lg:h-[950px]">
+    <div className="dua-custom-scrollbar mb-12 md:mb-8 max-w-[1000px] mx-2 md:mx-0 overflow-x-auto h-[955px] md:h-[1123px] lg:h-[920px]">
       <div className="bg-white py-[15px] rounded-xl px-[30px] mb-5">
         <div className="flex gap[10px]">
           <p className="text-green-600 font-semibold">Section:</p>

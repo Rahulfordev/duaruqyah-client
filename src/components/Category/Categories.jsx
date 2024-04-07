@@ -12,10 +12,10 @@ const Categories = ({ setFindId, showCategory }) => {
     data: category,
     loading,
     error,
-  } = useFetcher("http://localhost:5000/api/categories");
+  } = useFetcher("https://nodejs-sqlite.onrender.com/api/categories");
 
   const { data: subcategory } = useFetcher(
-    `http://localhost:5000/api/subcategories`
+    `https://nodejs-sqlite.onrender.com/api/subcategories`
   );
 
   const combinedData = category?.map((item1) => {
@@ -31,9 +31,9 @@ const Categories = ({ setFindId, showCategory }) => {
         showCategory ? "show" : "hide"
       } absolute xl:static`}
     >
-      <div className="custom-scrollbar w-[329px] md:w-[429px] bg-white rounded-lg h-[822px]">
+      <div className="custom-scrollbar w-[329px] md:w-[429px] bg-white rounded-lg h-[850px]">
         <div>
-          <div className="rounded-tl-lg rounded-tr-lg bg-green-600 py-[18px] px-[124px] text-center text-white text-lg mb-4">
+          <div className="rounded-tl-lg rounded-tr-lg bg-green-600 py-[18px] px-[124px] text-center text-white text-lg mb-10">
             <p>Categories</p>
           </div>
           <div className="relative flex gap-[10px] items-center mx-4 mb-4">
