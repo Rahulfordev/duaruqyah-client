@@ -34,10 +34,7 @@ export default function DuaContent({ findId }) {
 
     fetchData();
 
-    // Cleanup function to cancel ongoing requests when the component unmounts
-    return () => {
-      // Cancel ongoing requests
-    };
+    return () => {};
   }, [findId]);
 
   const toggleAudio = () => {

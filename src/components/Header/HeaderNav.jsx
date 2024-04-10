@@ -10,7 +10,7 @@ import "./header.css";
 import RightBar from "../RightBar/RightBar";
 import Categories from "../Category/Categories";
 
-const HeaderNav = () => {
+const HeaderNav = ({ setFindId }) => {
   const [showSetting, setShowSetting] = useState(null);
   const [showCategory, setShowCategory] = useState(null);
   return (
@@ -68,7 +68,9 @@ const HeaderNav = () => {
         </div>
       </div>
       {showSetting && <RightBar showSetting={showSetting} />}
-      {showCategory && <Categories showCategory={showCategory} />}
+      {showCategory && (
+        <Categories setFindId={setFindId} showCategory={showCategory} />
+      )}
     </>
   );
 };

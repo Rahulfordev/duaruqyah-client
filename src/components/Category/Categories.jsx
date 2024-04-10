@@ -44,7 +44,7 @@ const Categories = ({ setFindId, showCategory }) => {
               <input
                 type="text"
                 placeholder="Search by Categories"
-                className="py-3"
+                className="py-3 w-full"
               />
             </div>
           </div>
@@ -81,7 +81,7 @@ const Categories = ({ setFindId, showCategory }) => {
                         }`}
                       >
                         {showSubCat === i && (
-                          <div className="w-[380px] sub-categorie">
+                          <div className="w-[280px] md:w-[380px] sub-categorie">
                             {item?.matchingItems &&
                               item.matchingItems.map((subItem, j) => (
                                 <label

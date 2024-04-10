@@ -18,7 +18,7 @@ export default function Layout() {
         </div>
 
         <div className="relative xl:col-start-2 xl:col-span-full 2xl:col-start-2 2xl:col-span-full 2xl:z-[-1]">
-          <HeaderNav />
+          <HeaderNav setFindId={setFindId} />
         </div>
 
         <div className="relative hidden xl:block md:z-[-3] md-max:flex md-max:w-full lg-min:grid-cols-[350px,1fr] lg:gap-6 lg:z-[-2] xl-min:col-span-2 xl:gap-x-6 2xl:gap-x-6 2xl:z-[-1] 2xl-min:w-full grid sm:mx-auto md:mx-auto lg:w-[96%] lg:mx-auto">
