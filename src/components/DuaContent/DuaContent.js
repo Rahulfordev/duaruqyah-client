@@ -1,5 +1,6 @@
-"use client";
 import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
+import axios from "axios";
 
 import allahTraced from "../../../public/allahTraced.svg";
 import copy from "../../../public/copy.svg";
@@ -7,14 +8,15 @@ import bookmark from "../../../public/bookmark.svg";
 import light from "../../../public/light.svg";
 import share from "../../../public/share.svg";
 import report from "../../../public/report.svg";
-import audio from "../../../public/audio.svg";
-import { useEffect, useRef, useState } from "react";
-import axios from "axios";
+import pauseIcon from "../../../public/play.png";
+import playIcon from "../../../public/audio.svg";
+import AudioPlayer from "../audioPlayer/AudioPlayer";
 
 export default function DuaContent({ findId }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false); // State to track if audio is playing
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -40,8 +42,10 @@ export default function DuaContent({ findId }) {
   const toggleAudio = () => {
     if (audioRef.current.paused) {
       audioRef.current.play();
+      setIsPlaying(true);
     } else {
       audioRef.current.pause();
+      setIsPlaying(false);
     }
   };
 
@@ -87,15 +91,8 @@ export default function DuaContent({ findId }) {
                 <p className="text-green-600 font-semibold">Reference:</p>
                 <p>{dua?.refference_en}</p>
               </div>
-              <div className="flex items-center justify-between">
-                <div>
-                  {dua?.audio && (
-                    <>
-                      <audio ref={audioRef} src={dua?.audio} />
-                      <Image src={audio} alt="audio" onClick={toggleAudio} />
-                    </>
-                  )}
-                </div>
+              <div className="flex flex-col md:flex-row gap-4 md:gap-0 md:items-center md:justify-between">
+                <div>{dua?.audio && <AudioPlayer url={dua?.audio} />}</div>
                 <div className="flex items-center gap-7">
                   <Image src={copy} alt="copy" />
                   <Image src={bookmark} alt="bookmark" />
