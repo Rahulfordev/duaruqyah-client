@@ -11,7 +11,7 @@ export default function Layout() {
   const [findId, setFindId] = useState(null);
 
   return (
-    <main className="font-inter style-en false z-0 lg:fixed lg:inset-x-0 xl:fixed xl:inset-x-0 xl:p-6 xl:pb-0 2xl:px-10 2xl:pt-6 2xl:fixed 2xl:inset-x-0">
+    <main className="font-inter style-en false z-0 lg:fixed lg:inset-x-0 xl:fixed xl:inset-x-0 xl:p-6 xl:pb-0 2xl:px-10 2xl:pt-6 2xl:fixed 2xl:inset-x-0 mx-auto max-w-[1920px]">
       <div className="relative grid sm-max:overflow-auto sm:gap-6 xl:grid-rows-[46px,1fr] 2xl:grid-rows-[46px,1fr] z-0 xl:grid-cols-[105px,440px,1fr] 2xl:grid-cols-[105px,440px,1fr,320px] grid-cols-1">
         <div className="row-span-full hidden xl:block xl:z-[-1] 2xl:block 2xl:z-[-1]">
           <LeftBar />
