@@ -13,6 +13,10 @@ import Categories from "../Category/Categories";
 const HeaderNav = ({ setFindId }) => {
   const [showSetting, setShowSetting] = useState(null);
   const [showCategory, setShowCategory] = useState(null);
+
+  const handleCloseCategory = () => {
+    setShowCategory(false);
+  };
   return (
     <>
       <div className="right-10 lg:left-[1rem] xl:left-1 block xl:relative mb-4 sm:mb-0 xl:mb-20">
@@ -69,7 +73,11 @@ const HeaderNav = ({ setFindId }) => {
       </div>
       {showSetting && <RightBar showSetting={showSetting} />}
       {showCategory && (
-        <Categories setFindId={setFindId} showCategory={showCategory} />
+        <Categories
+          setFindId={setFindId}
+          showCategory={showCategory}
+          handleCloseCategory={handleCloseCategory}
+        />
       )}
     </>
   );

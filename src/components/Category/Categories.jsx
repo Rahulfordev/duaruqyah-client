@@ -6,7 +6,7 @@ import useFetcher from "@/hooks/useFetcher";
 import "./categories.css";
 import { useState } from "react";
 
-const Categories = ({ setFindId, showCategory }) => {
+const Categories = ({ setFindId, showCategory, handleCloseCategory }) => {
   const [showSubCat, setShowSubCat] = useState(null);
   const {
     data: category,
@@ -31,7 +31,11 @@ const Categories = ({ setFindId, showCategory }) => {
         showCategory ? "show" : "hide"
       } absolute xl:static`}
     >
-      <div className="custom-scrollbar w-[329px] md:w-[429px] bg-white rounded-lg h-[850px]">
+      <div
+        className="shadow-overlay xl:hidden"
+        onClick={handleCloseCategory}
+      ></div>
+      <div className="modal custom-scrollbar w-[329px] md:w-[429px] bg-white rounded-lg h-[850px]">
         <div>
           <div className="rounded-tl-lg rounded-tr-lg bg-green-600 py-[18px] px-[124px] text-center text-white text-lg mb-10">
             <p>Categories</p>
